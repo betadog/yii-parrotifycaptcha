@@ -2,6 +2,8 @@
 
 class ParrotifyCaptchaValidator extends CValidator
 {
+    protected $_url = 'http://api.parrotify.com/validate';
+
     /**
      * @param $object - instanceof CModel
      * @param $attribute
@@ -13,17 +15,13 @@ class ParrotifyCaptchaValidator extends CValidator
             'captcha[value]' => $object->$attribute,
             'captcha[key]'   => $cookie ? $cookie->value : null,
         );
-        $c = curl_init("http://api.parrotify.com/validate");
-        curl_setopt_array($c, array(
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => http_build_query($data),
-        ));
+
+
         /**
          * $result == 0 - when captcha code incorrect
          * $result == 1 - when captcha code correct
          */
-        $result = curl_exec($c);
+        $result = $this->_getResult($data);
 
         if ($result == 0) {
             $message = $this->message !== null
@@ -31,5 +29,39 @@ class ParrotifyCaptchaValidator extends CValidator
                 : 'The verification code is incorrect';
             $this->addError($object, $attribute, $message);
         }
+    }
+
+
+    protected function _getResult($data)
+    {
+        $data = http_build_query($data);
+        return extension_loaded('curl')
+            ? $this->_resultCurl($data)
+            : $this->_resultFopen($data);
+    }
+    protected function _resultCurl($data)
+    {
+        $c = curl_init($this->_url);
+        curl_setopt_array($c, array(
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $data,
+        ));
+        return curl_exec($c);
+    }
+    protected function _resultFopen($data)
+    {
+        $options = array(
+            'http'=> array(
+                'method'  => 'POST',
+                'header'  => 'Content-type: application/x-www-form-urlencoded',
+                'content' => $data,
+            ),
+        );
+        $context = stream_context_create($options);
+        $fp = fopen($this->_url, 'rb', false, $context);
+        $result = stream_get_contents($fp);
+        fclose($fp);
+        return $result;
     }
 }
