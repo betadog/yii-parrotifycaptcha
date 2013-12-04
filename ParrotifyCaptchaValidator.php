@@ -10,7 +10,7 @@ class ParrotifyCaptchaValidator extends CValidator
     {
         $data = array(
             'captcha[value]' => $object->$attribute,
-            'captcha[key]'   => $_COOKIE["_cpathca"],
+            'captcha[key]'   => Yii::app()->request->cookies["_cpathca"],
         );
         $c = curl_init("http://api.parrotify.com/validate");
         curl_setopt_array($c, array(
