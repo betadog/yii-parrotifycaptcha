@@ -30,7 +30,13 @@ in view file show widget:
 
 <?php 
     // summon widget
-    $this->widget('ext.parrotifyCaptcha.ParrotifyCaptcha', array('model'=>$model, 'attribute'=>'parrotifyCaptcha'));
+    $this->widget(
+        'ext.parrotifyCaptcha.ParrotifyCaptcha', 
+        array( 
+            'model' => $model, 
+            'attribute' => 'parrotifyCaptcha', // its a attribute name
+        )
+    );
     
     //and error message
     echo CHtml::error($model,'parrotifyCaptcha');
