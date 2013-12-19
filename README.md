@@ -34,7 +34,7 @@ in view file show widget:
         'ext.parrotifyCaptcha.ParrotifyCaptcha', 
         array( 
             'model' => $model, 
-            'attribute' => 'parrotifyCaptcha', // its a attribute name
+            'attribute' => 'parrotifyCaptcha', // its attribute name
         )
     );
     
@@ -45,4 +45,4 @@ in view file show widget:
 ```
 
 ### TODO ###
-install widget from composer
+integrate widget with composer
