@@ -37,3 +37,6 @@ in view file show widget:
 ?>
 
 ```
+
+### TODO ###
+install widget from composer
