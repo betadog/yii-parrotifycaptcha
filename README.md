@@ -44,5 +44,36 @@ in view file show widget:
 
 ```
 
-### TODO ###
-integrate widget with composer
+### Install via composer ###
+
+Add `vendor` alias into `/index.php`:
+```php
+...
+$vendorPath = ABSOLUTE_PATH_TO_COMPOSER.'/vendor');
+Yii::setPathOfAlias('vendor', $vendorPath);
+...
+```
+
+In model declare attribute and add validation rules:
+```php
+array('parrotifyCaptcha','vendor.parrotify.yii-parrotifycaptcha.ParrotifyCaptchaValidator',),
+```
+
+in view file show widget:
+```php
+
+<?php 
+    // summon widget
+    $this->widget(
+        'vendor.parrotify.yii-parrotifycaptcha.ParrotifyCaptcha', 
+        array( 
+            'model' => $model, 
+            'attribute' => 'parrotifyCaptcha', // its attribute name
+        )
+    );
+    
+    //and error message
+    echo CHtml::error($model,'parrotifyCaptcha');
+?>
+
+```
