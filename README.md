@@ -17,7 +17,10 @@ class Comments extends CActiveRecord
     {
         return array_merge( parent::rules(), array(
             array('parrotifyCaptcha','required',),
-            array('parrotifyCaptcha','ext.parrotifyCaptcha.ParrotifyCaptchaValidator',),
+            array('parrotifyCaptcha','ext.parrotifyCaptcha.ParrotifyCaptchaValidator',
+                // custom error message:
+                'message' => 'Validation code is incorrect',
+            ),
         ));
     }
     
@@ -46,6 +49,11 @@ in view file show widget:
 
 ### Install via composer ###
 
+Add package to `composer.json`:
+```
+"parrotify/yii-parrotifycaptcha": "dev-master"
+```
+
 Add `vendor` alias into `/index.php`:
 ```php
 ...
@@ -56,12 +64,14 @@ Yii::setPathOfAlias('vendor', $vendorPath);
 
 In model declare attribute and add validation rules:
 ```php
-array('parrotifyCaptcha','vendor.parrotify.yii-parrotifycaptcha.ParrotifyCaptchaValidator',),
+array('parrotifyCaptcha','vendor.parrotify.yii-parrotifycaptcha.ParrotifyCaptchaValidator',
+    // custom error message:
+    'message' => 'Validation code is incorrect',
+),
 ```
 
 in view file show widget:
 ```php
-
 <?php 
     // summon widget
     $this->widget(
@@ -75,5 +85,4 @@ in view file show widget:
     //and error message
     echo CHtml::error($model,'parrotifyCaptcha');
 ?>
-
 ```
