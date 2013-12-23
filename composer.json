@@ -1,0 +1,24 @@
+{
+    "name": "parrotify/yii-parrotifycaptcha",
+    "description": "Yii captcha package",
+    "keywords": ["yii", "captcha"],
+    "homepage": "https://github.com/betadog/yii-parrotifycaptcha",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kozitsin Konstantin",
+            "email": "support@parrotify.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/betadog/yii-parrotifycaptcha/issues",
+        "source": "https://github.com/betadog/yii-parrotifycaptcha"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "yiisoft/yii": "1.1.14"
+    }
+}
