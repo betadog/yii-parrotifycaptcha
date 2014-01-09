@@ -17,8 +17,5 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0"
-    },
-    "require-dev": {
-        "yiisoft/yii": "dev-master"
     }
 }
