@@ -39,6 +39,6 @@ class ParrotifyCaptcha extends CInputWidget
         $config = CJSON::encode($config);
         $config = substr($config,1,-1);
 
-        echo '<script src="http://api.parrotify.com/start.js" parrotifyCaptchaConfig=\''.$config.'\'></script>';
+        echo '<script src="http://api.reklamper.com/start.js" captchaConfig=\''.$config.'\'></script>';
     }
 }

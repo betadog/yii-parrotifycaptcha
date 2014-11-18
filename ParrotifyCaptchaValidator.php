@@ -2,7 +2,7 @@
 
 class ParrotifyCaptchaValidator extends CValidator
 {
-    protected $_url = 'http://api.parrotify.com/validate';
+    protected $_url = 'http://api.reklamper.com/validate';
 
     /**
      * @param $object - instanceof CModel
